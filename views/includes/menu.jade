@@ -1,0 +1,19 @@
+div.header
+  if !session
+    form(method="post" action="/signin")
+      ul.nav.nav-pills.pull-right
+        li
+          input.form-control(name="pseudo" type="text" placeholder="Pseudo")
+        li
+          input.form-control(name="password" type="password" placeholder="Password")
+        li
+          input.btn.btn-default(value='Sign In' type="submit")
+        li
+          a.btn.btn-default.btn-small(href='signup') Sign Up
+  else
+    ul.nav.nav-pills.pull-right
+      li
+        span session.user.pseudo
+
+  h1 Blogify 
+    small.text-muted Your Life

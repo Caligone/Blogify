@@ -1,23 +1,19 @@
 extends layout
 
 block content
-  div.container
-    div.header
-      h1 Blogify 
-        small  Your Life 
-    div.jumbotron
-      h2 A
-        small (nother)
-        simple  micro-blog system
-      p.lead What do you want to write today?
-      form(action="/" method="POST")
-        input.form-control(type="text" name="content" autofocus="autofocus" placeholder="Write something")
-  
-      section
-      each article in articles
-        article 
-          small.date= prettyDate(article.date)
-          blockquote.content= article.content 
-    div.footer
-        p © CopyMeAndDoBetter - 
-          a(href="http://twitter.com/Calig0ne")@Caligone
+  div.jumbotron
+    h2 A
+      small (nother)
+      simple  micro-blog system
+    p.lead What do you want to write today?
+    form(action="/" method="POST")
+      input.form-control(type="text" name="content" autofocus="autofocus" placeholder="Write something")
+
+    section
+    each article in articles
+      article
+        small.date= prettyDate(article.date)
+        blockquote.content= article.content
+  div.footer
+      p © CopyMeAndDoBetter -
+        a(href="http://twitter.com/Calig0ne") @Caligone

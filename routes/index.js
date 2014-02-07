@@ -21,14 +21,19 @@ exports.index = function(req, res){
 
 exports.add = function(req, res){
     var MongoClient = require('mongodb');
-    mongo = MongoClient.connect("mongodb://127.0.0.1:27017/bloggify", function(err, db) {
-        if(err) throw err;
+    if(req.body.content != undefined && req.body.content != "") {
+        mongo = MongoClient.connect("mongodb://127.0.0.1:27017/bloggify", function(err, db) {
+            if(err) throw err;
 
-        var articlesCollection = db.collection('articles');
+            var articlesCollection = db.collection('articles');
 
-        articlesCollection.insert( { content: req.body.content, date: new Date()}, function(error, results) {
-        db.close();
+            articlesCollection.insert( { content: req.body.content, date: new Date()}, function(error, results) {
+            db.close();
+            res.redirect('/');
+          });
+        });
+    }
+    else {
         res.redirect('/');
-      });
-    });
+    }
 };
