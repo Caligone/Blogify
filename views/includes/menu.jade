@@ -1,5 +1,5 @@
 div.header
-  if !session
+  if !session || !session.user
     form(method="post" action="/signin")
       ul.nav.nav-pills.pull-right
         li
@@ -9,11 +9,12 @@ div.header
         li
           input.btn.btn-default(value='Sign In' type="submit")
         li
-          a.btn.btn-default.btn-small(href='signup') Sign Up
+          a.btn.btn-default.btn-small(href='signup' title="Sign Up") Sign Up
   else
     ul.nav.nav-pills.pull-right
       li
-        span session.user.pseudo
+        a(href="/signout" title="Deconnection")
+            span.text-muted= session.user.pseudo
 
-  h1 Blogify 
-    small.text-muted Your Life
+  h1 Blogify
+    small.text-muted  Your Life

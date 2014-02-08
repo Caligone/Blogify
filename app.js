@@ -16,18 +16,18 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
+app.use(express.cookieParser());
+app.use(express.session({ secret: 'SkHg0qNtVleIpnhD2g5fIKRzenWnnKRViv623ybu' }));
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.cookieParser('SkHg0qNtVleIpnhD2g5fIKRzenWnnKRViv623ybu'));
-app.use(express.session());
-app.use(function(req, res, next){
-  console.log(req.session);
-  next();
+app.use(function(req,res,next){
+    res.locals.session = req.session;
+    next();
 });
+app.use(app.router);
 
 // development only
 if ('development' == app.get('env')) {
@@ -37,6 +37,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.post('/', routes.add);
 app.post('/signin', user.signin);
+app.get('/signout', user.signout);
 app.get('/signup', user.signup);
 
 
