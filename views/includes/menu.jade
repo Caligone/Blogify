@@ -18,3 +18,21 @@ div.header
 
   h1 Blogify
     small.text-muted  Your Life
+
+  // Flash messages system
+  if flash('danger')
+    div.alert.alert-danger.alert-dismissable
+      button.close(type="button" data-dismiss="alert" aria-hidden="true") &times;
+      span= flash('danger')
+  else if flash('warning')
+    div.alert.alert-warning.alert-dismissable
+      button.close(type="button" data-dismiss="alert" aria-hidden="true") &times;
+      span= flash('warning')
+  else if flash('info')
+    div.alert.alert-info.alert-dismissable
+      .button.close(type="button" data-dismiss="alert" aria-hidden="true") &times;
+      span= flash('info')
+  else if session('sucess')
+    div.alert.alert-sucess.alert-dismissable
+      button.close(type="button" data-dismiss="alert" aria-hidden="true") &times;
+      span= flash('sucess')

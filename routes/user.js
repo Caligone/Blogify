@@ -21,18 +21,15 @@ exports.signin = function(req, res){
                     if(count == 1) {
                         results.nextObject(function(err, user)
                         {
-                            console.log(crypto.createHash('sha256').update(req.body.password).digest('base64'));
                             // Correct password
                             if(user.password == crypto.createHash('sha256').update(req.body.password).digest('base64')) {
-                                console.log("Connected");
-                                req.session.info = "You are now connected !";
+                                req.flash('success', "You are now connected !");
                                 req.session.user = user;
                                 res.redirect('/');
                             }
                             // Incorrect password
                             else {
-                                console.log("FAILED");
-                                req.session.error = "Invalid account !";
+                                req.flash('warning', "Invalid account !");
                                 res.redirect('/');
                             }
                             db.close();
@@ -40,13 +37,13 @@ exports.signin = function(req, res){
                     }
                     // 404 Account not found
                     else if(count == 0) {
-                        req.session.error = "Invalid account !";
+                        req.flash('warning', "Invalid account !");
                         res.redirect('/');
                         db.close();
                     }
                     // Weird integrity problem
                     else {
-                        req.session.error = "WEIRD problem account !";
+                        req.flash('danger', "Weird integrity problem !");
                         db.close();
                     }
                 });
@@ -61,12 +58,15 @@ exports.signin = function(req, res){
 };
 
 exports.signout = function(req, res){
-    if(req.session.user) {
+    if(req.session.user)
         delete req.session.user;
-    }
     res.redirect('/');
 };
 
 exports.signup = function(req, res){
-    res.send('Sign Up');
+    res.render('signup');
+};
+
+exports.signup_post = function(req, res){
+
 };
