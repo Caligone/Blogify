@@ -10,8 +10,8 @@ Presentation
 ToDo List
 -------------
 + Implement accounts system
-+ Add gravatars
++ Add gravatars 
++ Improve web design and ergonomy
 + Add an infinite scroll to limit results
 + Improve the writing system (URL, Image, etc.)
-+ Improve web design and ergonomy
 + Develop a search system
