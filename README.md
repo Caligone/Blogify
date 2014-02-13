@@ -11,7 +11,7 @@ ToDo List
 -------------
 + Implement accounts system
 + Add gravatars 
-+ Improve web design and ergonomy
 + Add an infinite scroll to limit results
++ Improve web design and ergonomy
 + Improve the writing system (URL, Image, etc.)
 + Develop a search system
